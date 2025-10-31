@@ -4,41 +4,76 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 
 export function About() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: ref,
     offset: ["start end", "end start"],
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100])
+  const y = useTransform(scrollYProgress, [0, 1], [80, -80])
 
   return (
-    <section id="nosotros" ref={containerRef} className="py-24 md:py-32 bg-background overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section
+      id="nosotros"
+      ref={ref}
+      className="relative py-32 bg-white text-gray-900 overflow-hidden"
+    >
+      {/* Fondo minimalista con forma abstracta */}
+      <motion.div
+        className="absolute top-0 left-1/2 w-[80vw] h-[80vw] bg-gradient-to-b from-gray-100 to-transparent rounded-full blur-3xl -translate-x-1/2 opacity-40"
+        style={{ y }}
+      />
+
+      <div className="container mx-auto px-6 md:px-16 lg:px-24 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          {/* Imagen con borde arquitectónico */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            style={{ y }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
             viewport={{ once: true }}
+            className="relative h-[480px] group"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">Sobre Nosotros</h2>
-            <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-              ESAENZ.ARQ es un estudio de arquitectura dedicado a crear espacios que combinan estética contemporánea con
-              funcionalidad práctica.
-            </p>
-            <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-              Nuestra filosofía se basa en escuchar las necesidades de cada cliente y transformarlas en diseños únicos
-              que reflejan su personalidad y estilo de vida.
-            </p>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              Con años de experiencia en proyectos residenciales y comerciales, nos especializamos en crear ambientes
-              que inspiran y perduran en el tiempo.
-            </p>
+            <div className="absolute inset-0 border border-gray-300 rounded-3xl transform translate-x-6 translate-y-6 group-hover:translate-x-3 group-hover:translate-y-3 transition-all duration-300"></div>
+            <img
+              src="/remodelacion-baño-nordelta.jpg"
+              alt="Estudio ESAENZ.ARQ"
+              className="w-full h-full object-cover rounded-3xl shadow-xl"
+            />
           </motion.div>
 
-          <motion.div style={{ y }} className="relative h-[500px] rounded-sm overflow-hidden">
-            <img src="/modern-architecture-studio-workspace-design-team.jpg" alt="Estudio ESAENZ.ARQ" className="w-full h-full object-cover" />
+          {/* Texto elegante y minimalista */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            <h2 className="text-4xl md:text-5xl font-light tracking-tight leading-tight">
+              Diseñamos espacios que <br />
+              <span className="font-semibold text-gray-800">inspiran y perduran</span>
+            </h2>
+
+            <p className="text-gray-600 text-lg leading-relaxed">
+              En <span className="font-medium text-gray-800">ESAENZ.ARQ</span> fusionamos
+              la estética contemporánea con la funcionalidad práctica para dar vida
+              a proyectos arquitectónicos con identidad.
+            </p>
+
+            <p className="text-gray-600 text-lg leading-relaxed">
+              Cada espacio nace del diálogo con nuestros clientes, transformando sus
+              ideas en diseños únicos que reflejan personalidad y estilo de vida.
+            </p>
+
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="mt-6 px-8 py-3 border border-primary rounded-full text-primary text-sm uppercase tracking-wide hover:bg-primary hover:text-white transition-all"
+            >
+              Hablanos de tu proyecto
+            </motion.button>
           </motion.div>
         </div>
       </div>

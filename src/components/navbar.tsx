@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X } from "lucide-react" // 👈 para los íconos
+import { Menu, X } from "lucide-react" 
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)

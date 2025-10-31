@@ -26,7 +26,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-7xl font-bold text-white mb-6 text-balance"
+          className="text-5xl md:text-7xl font-semibold tracking-tight leading-tight text-white mb-6 text-balance"
         >
           Diseñamos espacios que inspiran.
         </motion.h1>
@@ -45,17 +45,18 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <Button
-            onClick={() => {
+        <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="px-8 py-2.5 border hover:border-white uppercase rounded-full text-gray-800 text-md tracking-wide bg-white hover:bg-primary hover:text-white transition-all"
+              onClick={() => {
               const phone = "5491112345678"; 
               const text = encodeURIComponent("Hola! Quiero consultar sobre un proyecto de arquitectura.");
               window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
             }}
-            size="lg"
-            className="hover:bg-white hover:text-black bg-primary text-base text-white px-8 py-6 rounded-sm cursor-pointer"
-          >
-            Solicitá tu proyecto
-          </Button>
+            >
+              Solicitá tu proyecto
+        </motion.button>
         </motion.div>
       </div>
     </section>

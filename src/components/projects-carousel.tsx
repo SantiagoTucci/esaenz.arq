@@ -1,74 +1,151 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useEffect, useState } from "react"
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
 import { Card } from "./ui/card"
 
 const projects = [
-  { id: 1, title: "Casa Moderna Minimalista", category: "Residencial", image: "/modern-minimalist-house-architecture-white-concret.jpg" },
-  { id: 2, title: "Edificio Corporativo", category: "Comercial", image: "/corporate-office-building-glass-facade-modern.jpg" },
-  { id: 3, title: "Reforma Integral", category: "Remodelación", image: "/interior-renovation-modern-apartment-open-space.jpg" },
-  { id: 4, title: "Casa de Campo", category: "Residencial", image: "/countryside-house-modern-architecture-nature.jpg" },
-  { id: 5, title: "Espacio Comercial", category: "Comercial", image: "/retail-commercial-space-modern-interior-design.jpg" },
+  {
+    id: 1,
+    title: "Casa Moderna Minimalista",
+    category: "Vivienda Unifamiliar",
+    image: "/modern-minimalist-house-architecture-white-concret.jpg",
+  },
+  {
+    id: 2,
+    title: "Vivienda Modular Contemporánea",
+    category: "Arquitectura Sustentable",
+    image: "/vivienda-container.jpg",
+  },
+  {
+    id: 3,
+    title: "Reforma Integral de Departamento",
+    category: "Remodelación Interior",
+    image: "/interior-renovation-modern-apartment-open-space.jpg",
+  },
+  {
+    id: 4,
+    title: "Casa de Campo con Suite Principal",
+    category: "Residencial Premium",
+    image: "/baño-suite.jpg",
+  },
+  {
+    id: 5,
+    title: "Local Comercial Moderno",
+    category: "Arquitectura Comercial",
+    image: "/retail-commercial-space-modern-interior-design.jpg",
+  },
+  {
+    id: 6,
+    title: "Edificio Residencial Urbano",
+    category: "Desarrollo Habitacional",
+    image: "/edificio-residencial.jpg",
+  },
+  {
+    id: 7,
+    title: "Casa Familiar con Piscina",
+    category: "Arquitectura Residencial",
+    image: "/casa-lincon-pileta.jpg",
+  },
 ]
 
 export function ProjectsCarousel() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  })
+	const containerRef = useRef<HTMLDivElement>(null)
+	const scrollContainerRef = useRef<HTMLDivElement>(null)
+	const [maxOffset, setMaxOffset] = useState("0px")
 
-  // Hacemos que el scroll horizontal avance más lento que el scroll vertical
-  const rawX = useTransform(scrollYProgress, [0, 1], ["3%", "-40%"])
-  const x = useSpring(rawX, { damping: 35, stiffness: 80 }) // movimiento más suave y lento
 
-  return (
-    <section id="proyectos" ref={containerRef} className="py-24 md:py-32 bg-background">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
-          Proyectos Destacados
-        </h2>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
-          Cada proyecto es una historia única de diseño y funcionalidad
-        </p>
-      </div>
+	const [isDesktop, setIsDesktop] = useState<boolean>(() =>
+		typeof window !== "undefined" ? window.innerWidth >= 640 : true
+	)
 
-      <div className="overflow-hidden">
-        <motion.div 
-          className="flex gap-6 min-w-max"
-          style={{ x }}
-        >
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              className="flex-shrink-0 w-[350px]"
-              initial={{ opacity: 0, x: 100, scale: 0.9 }}
-              whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ type: "spring", stiffness: 120, damping: 30, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="group relative w-[350px] h-[450px] overflow-hidden cursor-pointer border-0 rounded-sm shadow-lg">
-                <img
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/80 transition-all duration-300 flex items-end p-6">
-                  <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="text-primary-foreground/80 text-sm mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {project.category}
-                    </p>
-                    <h3 className="text-primary-foreground text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {project.title}
-                    </h3>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  )
+	const { scrollYProgress } = useScroll({
+		target: containerRef,
+		offset: ["start start", "end end"],
+	})
+
+	const calculateMaxOffset = () => {
+		if (scrollContainerRef.current) {
+			const { scrollWidth, clientWidth } = scrollContainerRef.current
+			const offset = scrollWidth - clientWidth
+
+			// margen para ver la última card completa
+			setMaxOffset(offset > 0 ? `-${offset + 28}px` : "0px")
+		}
+	}
+
+	useEffect(() => {
+		calculateMaxOffset()
+		window.addEventListener("resize", calculateMaxOffset)
+		const onResize = () => setIsDesktop(window.innerWidth >= 640)
+		window.addEventListener("resize", onResize)
+		return () => {
+			window.removeEventListener("resize", calculateMaxOffset)
+			window.removeEventListener("resize", onResize)
+		}
+	}, [])
+
+	// evitar "zonas muertas" al inicio/fin y hacer que el mapeo responda antes
+	const rawX = useTransform(scrollYProgress, [0.02, 0.98], ["0px", maxOffset])
+
+	// En desktop usamos un spring más reactivo (menos pausado).
+	// En mobile devolvemos rawX directo para que el desplazamiento responda instantáneamente al swipe.
+	const x = isDesktop
+		? useSpring(rawX, { stiffness: 200, damping: 30, mass: 0.6 })
+		: rawX
+
+	return (
+		<section
+			id="proyectos"
+			ref={containerRef}
+			className="bg-background overscroll-contain"
+			style={{ height: "280vh" }} 
+		>
+			<div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+				{/* Título */}
+				<div className="text-center mb-8 px-4">
+					<h2 className="text-4xl md:text-5xl font-light tracking-tight leading-tight text-foreground mb-4">
+						Proyectos destacados
+					</h2>
+					<p className="text-muted-foreground text-lg max-w-xl mx-auto leading-relaxed">
+						Cada proyecto es una historia única de diseño y funcionalidad
+					</p>
+				</div>
+
+				{/* Carrusel */}
+				<div
+					ref={scrollContainerRef}
+					className="overflow-hidden flex items-center px-4 md:px-12"
+				>
+					<motion.div
+						className="flex gap-6 w-max will-change-transform"
+						style={{ x }}
+					>
+						{projects.map((project) => (
+							<Card
+								key={project.id}
+								className="group relative w-[280px] sm:w-[340px] md:w-[360px] h-[420px] sm:h-[420px] overflow-hidden cursor-pointer border-0 rounded-sm shadow-lg flex-shrink-0"
+							>
+								<img
+									src={project.image}
+									alt={project.title}
+									className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+								/>
+								<div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/80 transition-all duration-300 flex items-end p-6">
+									<div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
+										<p className="text-primary-foreground/80 text-sm mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+											{project.category}
+										</p>
+										<h3 className="text-primary-foreground text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+											{project.title}
+										</h3>
+									</div>
+								</div>
+							</Card>
+						))}
+					</motion.div>
+				</div>
+			</div>
+		</section>
+	)
 }

@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 
 export function ContactForm() {
   return (
-    <section id="contacto" className="py-24 md:py-32 bg-secondary/30">
+    <section id="contacto" className="py-24 md:py-32 bg-primary/40">
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mx-auto">
           <motion.div
@@ -19,7 +19,7 @@ export function ContactForm() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">Contactanos</h2>
+            <h2 className="text-4xl md:text-5xl font-light text-foreground mb-4 text-balance">Contactanos</h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
               Contanos sobre tu proyecto y te responderemos a la brevedad
             </p>
