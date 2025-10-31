@@ -72,6 +72,13 @@ export function About() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               className="mt-2 md:mt-6 px-8 py-3 border hover:border-primary rounded-full hover:text-primary text-sm uppercase tracking-wide bg-primary hover:bg-white text-white transition-all"
+              onClick={() => {
+                const phone = "5491112345678"
+                const text = encodeURIComponent(
+                  "Hola! Quiero consultar sobre un proyecto de arquitectura."
+                )
+                window.open(`https://wa.me/${phone}?text=${text}`, "_blank")
+              }}
             >
               Contanos de tu proyecto
             </motion.button>
