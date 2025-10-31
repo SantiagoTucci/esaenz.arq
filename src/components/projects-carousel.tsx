@@ -111,7 +111,7 @@ export function ProjectsCarousel() {
         {/* Carrusel */}
         <div
           ref={scrollContainerRef}
-          className="overflow-hidden flex items-center px-4 md:px-12 relative mb-2 sm:mb-4"
+          className="overflow-hidden flex items-center px-4 md:px-12 relative mb-2 sm:mb-5"
         >
           <motion.div
             className="flex gap-6 w-max will-change-transform"
