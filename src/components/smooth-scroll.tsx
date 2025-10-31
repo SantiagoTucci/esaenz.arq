@@ -1,34 +1,28 @@
-import { ReactNode, useEffect } from "react";
+"use client"
 
-interface SmoothScrollProps {
-  children: ReactNode;
-}
+import { ReactNode, useEffect } from "react"
+import Lenis from "@studio-freight/lenis"
 
-export function SmoothScroll({ children }: SmoothScrollProps) {
+export function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
-    // Smooth scroll para enlaces de navegación
-    const handleClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const link = target.closest('a[href^="#"]');
-      
-      if (link) {
-        e.preventDefault();
-        const href = link.getAttribute("href");
-        if (href) {
-          const element = document.querySelector(href);
-          if (element) {
-            element.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
-        }
-      }
-    };
+    const lenis = new Lenis({
+      duration: 1.5, // suavidad de desplazamiento
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // curva easeOutExpo
+      smoothWheel: true, // suaviza el scroll con mouse
+      wheelMultiplier: 1, // sensibilidad del scroll
+    })
 
-    document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
-  }, []);
+    const raf = (time: number) => {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
 
-  return <>{children}</>;
+    requestAnimationFrame(raf)
+
+    return () => {
+      lenis.destroy()
+    }
+  }, [])
+
+  return <>{children}</>
 }

@@ -47,7 +47,7 @@ const stepVariants: Variants = {
 
 export function Process() {
   return (
-    <section className="py-24 md:py-38 bg-gradient-to-b from-background to-background/80 relative overflow-hidden">
+    <section className="py-24 md:py-45 bg-gradient-to-b from-background to-background/80 relative overflow-hidden">
       <motion.div
         initial="hidden"
         whileInView="visible"

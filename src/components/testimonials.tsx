@@ -77,7 +77,7 @@ export function Testimonials() {
                 viewport={{ once: false, amount: 0.2 }}
                 className="group h-full"
               >
-                <Card className="h-full overflow-hidden bg-white/10 backdrop-blur-xl border border-primary hover:border-white/40 shadow-lg hover:shadow-3xl transition-all duration-500 rounded-3xl">
+                <Card className="h-full overflow-hidden bg-white/10 backdrop-blur-xl border border-primary hover:border-white/40 shadow-lg hover:shadow-2xl transition-all duration-500 rounded-3xl">
                   <div className="relative w-full h-56 overflow-hidden">
                     <motion.div
                       whileHover={{ scale: 1.05 }}
@@ -132,7 +132,7 @@ export function Testimonials() {
           exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: false, amount: 0.3 }}
-          className="text-center mb-8"
+          className="text-center mb-6"
         >
           <p className="text-white/60 text-md uppercase font-light tracking-widest">
             Trabajamos con las mejores marcas
@@ -147,7 +147,7 @@ export function Testimonials() {
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 1 }}
             viewport={{ once: false, amount: 0.3 }}
-            className="relative overflow-hidden mt-10"
+            className="relative overflow-hidden mt-7"
           >
             <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
               <motion.div
