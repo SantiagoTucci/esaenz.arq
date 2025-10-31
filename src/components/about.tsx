@@ -71,9 +71,9 @@ export function About() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
-              className="mt-2 md:mt-6 px-8 py-3 border border-primary rounded-full text-primary text-sm uppercase tracking-wide hover:bg-primary hover:text-white transition-all"
+              className="mt-2 md:mt-6 px-8 py-3 border hover:border-primary rounded-full hover:text-primary text-sm uppercase tracking-wide bg-primary hover:bg-white text-white transition-all"
             >
-              Hablanos de tu proyecto
+              Contanos de tu proyecto
             </motion.button>
           </motion.div>
 

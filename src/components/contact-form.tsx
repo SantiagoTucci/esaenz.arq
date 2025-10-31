@@ -23,7 +23,7 @@ export function ContactForm() {
   return (
     <section
       id="contacto"
-      className="relative h-[90vh] flex items-center justify-center overflow-hidden bg-black"
+      className="relative h-[100vh] flex items-center justify-center overflow-hidden bg-black"
     >
       {/* 🎥 Video de fondo */}
       <video
