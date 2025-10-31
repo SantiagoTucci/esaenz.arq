@@ -11,7 +11,7 @@ export function Hero() {
         id="hero"
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/image.png')",
+          backgroundImage: "url('/image.webp')",
         }}
       />
 

@@ -10,7 +10,7 @@ const testimonials = [
     role: "Cliente Residencial",
     content:
       "ESAENZ.ARQ renovó nuestra cocina creando un espacio moderno, funcional y lleno de luz. Lo recomendamos.",
-    image: "/proyecto-renovacion-cocina.jpg",
+    image: "/proyecto-renovacion-cocina.webp",
     rating: 5,
   },
   {
@@ -18,7 +18,7 @@ const testimonials = [
     role: "Empresario",
     content:
       "Emmanuel diseñó nuestro playroom con un estilo contemporáneo y acogedor.",
-    image: "/proyecto-playroom.jpg",
+    image: "/proyecto-playroom.webp",
     rating: 5,
   },
   {
@@ -26,19 +26,19 @@ const testimonials = [
     role: "Propietaria",
     content:
       "Mi cocina quedó práctica y elegante. El diseño minimalista es exactamente lo que buscaba.",
-    image: "/proyecto-cocina-funcional.jpg",
+    image: "/proyecto-cocina-funcional.webp",
     rating: 5,
   },
 ]
 
 const brands = [
-  { name: "Caterpillar", logo: "/brands/caterpillar.png" },
-  { name: "DeWalt", logo: "/brands/dewalt.png" },
-  { name: "Makita", logo: "/brands/makita.png" },
-  { name: "Bosch", logo: "/brands/bosch.png" },
-  { name: "Stanley", logo: "/brands/stanley.png" },
-  { name: "Hilti", logo: "/brands/hilti.png" },
-  { name: "Milwaukee", logo: "/brands/milwaukee.png" },
+  { name: "Caterpillar", logo: "/brands/caterpillar.webp" },
+  { name: "DeWalt", logo: "/brands/dewalt.webp" },
+  { name: "Makita", logo: "/brands/makita.webp" },
+  { name: "Bosch", logo: "/brands/bosch.webp" },
+  { name: "Stanley", logo: "/brands/stanley.webp" },
+  { name: "Hilti", logo: "/brands/hilti.webp" },
+  { name: "Milwaukee", logo: "/brands/milwaukee.webp" },
 ]
 
 export function Testimonials() {

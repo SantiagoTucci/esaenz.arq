@@ -69,7 +69,7 @@ export function About() {
           >
             <div className="absolute inset-0 border border-gray-300 rounded-3xl transform translate-x-6 translate-y-6 group-hover:translate-x-3 group-hover:translate-y-3 transition-all duration-300"></div>
             <img
-              src="/remodelacion-baño-nordelta.jpg"
+              src="/remodelacion-baño-nordelta.webp"
               alt="Estudio ESAENZ.ARQ"
               className="w-full h-full object-cover rounded-3xl shadow-xl"
             />

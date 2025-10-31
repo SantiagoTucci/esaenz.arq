@@ -28,7 +28,7 @@ export function ContactForm() {
       {/* 🎥 Video de fondo */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        src="/render-video.mp4"
+        src="/render-video.webm"
         autoPlay
         loop
         muted
