@@ -9,24 +9,24 @@ const testimonials = [
     name: "María González",
     role: "Cliente Residencial",
     content:
-      "El equipo de ESAENZ.ARQ transformó nuestra casa en el hogar de nuestros sueños. Su atención al detalle y profesionalismo fueron excepcionales.",
-    image: "/images/residencial-minimal.jpg",
+      "ESAENZ.ARQ renovó nuestra cocina creando un espacio moderno, funcional y lleno de luz. Lo recomendamos.",
+    image: "/proyecto-renovacion-cocina.jpg",
     rating: 5,
   },
   {
     name: "Carlos Rodríguez",
     role: "Empresario",
     content:
-      "Diseñaron nuestras oficinas corporativas con un enfoque moderno y funcional. El resultado superó todas nuestras expectativas.",
-    image: "/images/oficina-minimal.jpg",
+      "Emmanuel diseñó nuestro playroom con un estilo contemporáneo y acogedor.",
+    image: "/proyecto-playroom.jpg",
     rating: 5,
   },
   {
     name: "Laura Martínez",
     role: "Propietaria",
     content:
-      "La reforma de mi apartamento fue impecable. Lograron maximizar el espacio y crear un ambiente luminoso y acogedor.",
-    image: "/images/apartamento-minimal.jpg",
+      "Mi cocina quedó práctica y elegante. El diseño minimalista es exactamente lo que buscaba.",
+    image: "/proyecto-cocina-funcional.jpg",
     rating: 5,
   },
 ]
@@ -52,9 +52,9 @@ export function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-8 md:mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-light text-white leading-tight mb-4">
+          <h2 className="text-4xl md:text-5xl font-light text-white leading-tight">
             Lo que dicen nuestros{" "}
             <span className="font-semibold">clientes</span>
           </h2>
@@ -75,7 +75,7 @@ export function Testimonials() {
               viewport={{ once: true }}
               className="group h-full"
             >
-              <Card className="h-full overflow-hidden bg-white/10 backdrop-blur-xl border border-primary hover:border-white/40 shadow-xl hover:shadow-2xl transition-all duration-500 rounded-3xl">
+              <Card className="h-full overflow-hidden bg-white/10 backdrop-blur-xl border border-primary hover:border-white/40 shadow-lg hover:shadow-3xl transition-all duration-500 rounded-3xl">
                 {/* Image Section */}
                 <div className="relative w-full h-56 overflow-hidden">
                   <motion.div
@@ -90,9 +90,6 @@ export function Testimonials() {
                     />
                   </motion.div>
                   
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent" />
-                  
                   {/* Quote Icon */}
                   <div className="absolute top-4 right-4 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30">
                     <Quote className="w-6 h-6 text-white" />
@@ -100,7 +97,7 @@ export function Testimonials() {
                 </div>
 
                 {/* Content Section */}
-                <CardContent className="p-8 flex flex-col h-[calc(100%-14rem)]">
+                <CardContent className="p-6 flex flex-col h-[calc(100%-14rem)]">
                   {/* Rating Stars */}
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -112,16 +109,16 @@ export function Testimonials() {
                   </div>
 
                   {/* Testimonial Text */}
-                  <p className="text-white/90 mb-6 leading-relaxed text-base flex-grow">
+                  <p className="text-white/90 mb-4 leading-relaxed text-base flex-grow">
                     "{testimonial.content}"
                   </p>
 
                   {/* Author Info */}
-                  <div className="pt-4 border-t border-white/20">
+                  <div className="pt-2 border-t border-white/20">
                     <p className="font-semibold text-white text-lg">
                       {testimonial.name}
                     </p>
-                    <p className="text-sm text-white/60 mt-1">
+                    <p className="text-sm text-white/60">
                       {testimonial.role}
                     </p>
                   </div>
@@ -137,43 +134,44 @@ export function Testimonials() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <p className="text-white/60 text-sm uppercase tracking-widest">
+          <p className="text-white/60 text-md uppercase font-light tracking-widest">
             Trabajamos con las mejores marcas
           </p>
         </motion.div>
 
-        {/* Continuous Carousel */}
-        <div className="relative overflow-hidden">
-          <motion.div
-            className="flex gap-16 items-center"
-            animate={{
-              x: ["0%", "-50%"],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 30,
-              ease: "linear",
-            }}
-          >
-            {[...brands, ...brands].map((brand, i) => (
-              <div
-                key={`${brand.name}-${i}`}
-                className="flex-shrink-0 w-32 h-16 flex items-center justify-center bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 px-6"
-              >
-                <img
-                  src={brand.logo}
-                  alt={brand.name}
-                  className="w-full h-auto max-h-12 object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
-                />
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Side Gradients */}
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-primary via-primary/80 to-transparent pointer-events-none z-10" />
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-primary via-primary/80 to-transparent pointer-events-none z-10" />
+        {/* Continuous Infinite Carousel */}
+        <div className="relative overflow-hidden mt-10">
+          <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <motion.div
+              className="flex gap-16 items-center flex-nowrap"
+              animate={{
+                x: ["0%", "-50%"],
+              }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 25, // desktop speed
+                ease: "linear",
+              }}
+            >
+              {[...brands, ...brands].map((brand, i) => (
+                <div
+                  key={`${brand.name}-${i}`}
+                  className="flex-shrink-0 w-32 h-16 flex items-center justify-center bg-white/5 
+                            rounded-xl border border-white/10 hover:bg-white/10 
+                            hover:border-white/20 transition-all duration-300 px-6"
+                >
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    className="w-full h-auto object-contain hover:opacity-100 transition-opacity duration-300"
+                  />
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

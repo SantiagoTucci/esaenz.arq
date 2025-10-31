@@ -25,24 +25,7 @@ export function About() {
       />
 
       <div className="container mx-auto px-6 md:px-16 lg:px-24 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          {/* Imagen con borde arquitectónico */}
-          <motion.div
-            style={{ y }}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="relative h-[480px] group"
-          >
-            <div className="absolute inset-0 border border-gray-300 rounded-3xl transform translate-x-6 translate-y-6 group-hover:translate-x-3 group-hover:translate-y-3 transition-all duration-300"></div>
-            <img
-              src="/remodelacion-baño-nordelta.jpg"
-              alt="Estudio ESAENZ.ARQ"
-              className="w-full h-full object-cover rounded-3xl shadow-xl"
-            />
-          </motion.div>
-
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-15 items-center">
           {/* Texto elegante y minimalista */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -70,10 +53,26 @@ export function About() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
-              className="mt-6 px-8 py-3 border border-primary rounded-full text-primary text-sm uppercase tracking-wide hover:bg-primary hover:text-white transition-all"
+              className="mt-2 md:mt-6 px-8 py-3 border border-primary rounded-full text-primary text-sm uppercase tracking-wide hover:bg-primary hover:text-white transition-all"
             >
               Hablanos de tu proyecto
             </motion.button>
+          </motion.div>
+          {/* Imagen con borde arquitectónico */}
+          <motion.div
+            style={{ y }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="relative h-[480px] group"
+          >
+            <div className="absolute inset-0 border border-gray-300 rounded-3xl transform translate-x-6 translate-y-6 group-hover:translate-x-3 group-hover:translate-y-3 transition-all duration-300"></div>
+            <img
+              src="/remodelacion-baño-nordelta.jpg"
+              alt="Estudio ESAENZ.ARQ"
+              className="w-full h-full object-cover rounded-3xl shadow-xl"
+            />
           </motion.div>
         </div>
       </div>

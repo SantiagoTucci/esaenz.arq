@@ -53,8 +53,6 @@ export function ProjectsCarousel() {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const scrollContainerRef = useRef<HTMLDivElement>(null)
 	const [maxOffset, setMaxOffset] = useState("0px")
-
-
 	const [isDesktop, setIsDesktop] = useState<boolean>(() =>
 		typeof window !== "undefined" ? window.innerWidth >= 640 : true
 	)
@@ -68,8 +66,6 @@ export function ProjectsCarousel() {
 		if (scrollContainerRef.current) {
 			const { scrollWidth, clientWidth } = scrollContainerRef.current
 			const offset = scrollWidth - clientWidth
-
-			// margen para ver la última card completa
 			setMaxOffset(offset > 0 ? `-${offset + 28}px` : "0px")
 		}
 	}
@@ -85,11 +81,7 @@ export function ProjectsCarousel() {
 		}
 	}, [])
 
-	// evitar "zonas muertas" al inicio/fin y hacer que el mapeo responda antes
 	const rawX = useTransform(scrollYProgress, [0.02, 0.98], ["0px", maxOffset])
-
-	// En desktop usamos un spring más reactivo (menos pausado).
-	// En mobile devolvemos rawX directo para que el desplazamiento responda instantáneamente al swipe.
 	const x = isDesktop
 		? useSpring(rawX, { stiffness: 200, damping: 30, mass: 0.6 })
 		: rawX
@@ -98,12 +90,12 @@ export function ProjectsCarousel() {
 		<section
 			id="proyectos"
 			ref={containerRef}
-			className="bg-background overscroll-contain"
-			style={{ height: "280vh" }} 
+			className="relative bg-background overscroll-contain" // relative agregado
+			style={{ height: "280vh" }}
 		>
-			<div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+			<div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden relative"> {/* relative agregado */}
 				{/* Título */}
-				<div className="text-center mb-8 px-4">
+				<div className="text-center mb-8 px-4 relative">
 					<h2 className="text-4xl md:text-5xl font-light tracking-tight leading-tight text-foreground mb-4">
 						Proyectos destacados
 					</h2>
@@ -115,7 +107,7 @@ export function ProjectsCarousel() {
 				{/* Carrusel */}
 				<div
 					ref={scrollContainerRef}
-					className="overflow-hidden flex items-center px-4 md:px-12"
+					className="overflow-hidden flex items-center px-4 md:px-12 relative" // relative agregado
 				>
 					<motion.div
 						className="flex gap-6 w-max will-change-transform"
@@ -124,7 +116,7 @@ export function ProjectsCarousel() {
 						{projects.map((project) => (
 							<Card
 								key={project.id}
-								className="group relative w-[280px] sm:w-[340px] md:w-[360px] h-[420px] sm:h-[420px] overflow-hidden cursor-pointer border-0 rounded-sm shadow-lg flex-shrink-0"
+								className="group relative w-[280px] sm:w-[340px] md:w-[360px] h-[470px] sm:h-[420px] overflow-hidden cursor-pointer border-0 rounded-sm shadow-lg flex-shrink-0"
 							>
 								<img
 									src={project.image}

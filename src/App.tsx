@@ -20,6 +20,7 @@ export default function App() {
         <About />
         <Testimonials />
         <Process />
+        <ContactForm />
         <Footer />
       </div>
     </SmoothScroll>

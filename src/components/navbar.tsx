@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X } from "lucide-react" 
+import { Menu, X } from "lucide-react"
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -24,9 +24,9 @@ export function Navbar() {
 
   return (
     <motion.nav
-      initial={{ backgroundColor: "transparent" }}
+      initial={{ backgroundColor: "rgba(0,0,0,0)" }} // 🔹 transparente reemplazado
       animate={{
-        backgroundColor: scrolled ? "rgba(0,0,0,0.5)" : "transparent",
+        backgroundColor: scrolled ? "rgba(0,0,0,0.5)" : "rgba(0,0,0,0)",
         height: scrolled ? "60px" : "90px",
       }}
       transition={{ duration: 0.3 }}
@@ -34,12 +34,12 @@ export function Navbar() {
         scrolled ? "backdrop-blur-md shadow-lg" : ""
       }`}
     >
-
       {/* 🔹 Logo o nombre */}
       <motion.div
         initial={{ opacity: 1 }}
         animate={{ color: "oklch(0.98 0 0)" }}
-        className="text-2xl font-semibold tracking-tight"
+        className="text-2xl font-semibold tracking-tight cursor-pointer"
+        onClick={() => scrollToSection("hero")} // 🔹 Scroll al Hero
       >
         ESAENZ.ARQ
       </motion.div>
@@ -53,7 +53,7 @@ export function Navbar() {
             whileHover={{ scale: 1.05 }}
             className="capitalize text-sm font-medium text-primary-foreground transition-colors hover:opacity-80"
           >
-            {item === "nosotros" ? "Sobre Nosotros" : item}
+            {item === "nosotros" ? "nosotros" : item}
           </motion.button>
         ))}
       </div>
@@ -98,7 +98,7 @@ export function Navbar() {
                   onClick={() => scrollToSection(item)}
                   className="capitalize text-lg font-medium text-primary-foreground hover:opacity-80 transition"
                 >
-                  {item === "nosotros" ? "Sobre Nosotros" : item}
+                  {item === "nosotros" ? "nosotros" : item}
                 </button>
               ))}
             </div>

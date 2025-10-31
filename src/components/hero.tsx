@@ -4,21 +4,24 @@ import { motion } from "framer-motion"
 import { Button } from "./ui/button"
 
 export function Hero() {
-
   return (
-    <section
-      className="relative h-screen flex items-center justify-center overflow-hidden"
-    >
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Imagen de fondo */}
       <div
+        id="hero"
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/public/image.png')",
+          backgroundImage: "url('/image.png')",
         }}
       />
 
       {/* Capa de color para mejorar legibilidad */}
-      <div className="absolute inset-0 bg-black/50" />
+      <motion.div
+        className="absolute inset-0"
+        initial={{ backgroundColor: "rgba(0,0,0,0)" }}
+        animate={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+        transition={{ duration: 0.8 }}
+      />
 
       {/* Contenido */}
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
@@ -45,18 +48,20 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-        <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-              className="px-8 py-2.5 border hover:border-white uppercase rounded-full text-gray-800 text-md tracking-wide bg-white hover:bg-primary hover:text-white transition-all"
-              onClick={() => {
-              const phone = "5491112345678"; 
-              const text = encodeURIComponent("Hola! Quiero consultar sobre un proyecto de arquitectura.");
-              window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            className="px-8 py-2.5 border hover:border-white uppercase rounded-full text-gray-800 text-md tracking-wide bg-white hover:bg-primary hover:text-white transition-all"
+            onClick={() => {
+              const phone = "5491112345678"
+              const text = encodeURIComponent(
+                "Hola! Quiero consultar sobre un proyecto de arquitectura."
+              )
+              window.open(`https://wa.me/${phone}?text=${text}`, "_blank")
             }}
-            >
-              Solicitá tu proyecto
-        </motion.button>
+          >
+            Solicitá tu proyecto
+          </motion.button>
         </motion.div>
       </div>
     </section>

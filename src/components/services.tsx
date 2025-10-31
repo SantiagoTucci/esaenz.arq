@@ -69,7 +69,7 @@ export function Services() {
                         <div className="w-16 h-16 md:w-22 md:h-22 rounded-full bg-primary/20 flex items-center mb-4 justify-center group-hover:bg-primary/30 transition-colors duration-300 mx-auto">
                           <service.icon className="w-8 h-8 md:w-18 md:h-18 text-white" strokeWidth={1.5} />
                         </div>
-                        <h3 className="text-xl md:text-2xl font-semibold text-white mb-3 text-balance">{service.title}</h3>
+                        <h3 className="text-xl md:text-2xl text-white mb-3 text-balance">{service.title}</h3>
                         <p className="text-gray-200 text-sm md:text-base leading-relaxed">{service.description}</p>
                       </div>
 

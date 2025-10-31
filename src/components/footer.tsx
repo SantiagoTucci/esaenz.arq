@@ -1,6 +1,7 @@
-import { Instagram, Linkedin, Mail, MapPin } from "lucide-react"
+import { Instagram, Mail, MapPin } from "lucide-react"
 
 export function Footer() {
+
   return (
     <footer className="bg-primary text-primary-foreground py-16">
       <div className="container mx-auto px-6">
@@ -35,29 +36,29 @@ export function Footer() {
             <h4 className="text-lg font-semibold mb-4">Seguinos</h4>
             <div className="flex gap-4">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/esaenz.arq/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
               >
                 <Instagram className="w-5 h-5" />
               </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 pt-8 text-center">
+        <div className="border-t border-primary-foreground/20 pt-8 text-center flex flex-col justify-center items-center gap-2">
           <p className="text-primary-foreground/60 text-sm">
             © {new Date().getFullYear()} ESAENZ.ARQ. Todos los derechos reservados.
           </p>
+          <a
+            href="https://www.instagram.com/tucciwebstudio/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-foreground/60 text-md font-bold mt-1 hover:text-primary-foreground transition-colors"
+          >
+            Hecho por TucciWebStudio
+          </a>
         </div>
       </div>
     </footer>
