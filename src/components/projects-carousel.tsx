@@ -145,7 +145,7 @@ export function ProjectsCarousel() {
 
         {/* Indicador de scroll SOLO en mobile */}
         <motion.div
-          className="absolute bottom-8 sm:bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center text-muted-foreground"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center text-muted-foreground"
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
         >
