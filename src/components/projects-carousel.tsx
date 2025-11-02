@@ -77,7 +77,7 @@ export function ProjectsCarousel() {
 
         {/* Animación de títulos */}
         <motion.div
-          className="text-center mb-6md:mb-8 px-4 relative"
+          className="text-center mb-6 md:mb-8 px-4 relative"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
